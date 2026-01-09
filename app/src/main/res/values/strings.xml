@@ -6,7 +6,13 @@
     <string name="about_app">About App</string>
     <string name="open_drawer">Open Drawer</string>
     <string name="close_drawer">Close Drawer</string>
-
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="favouriteFragment">Hello Favourite Fragment</string>
+    <string name="profileFragment">Profile Fragment</string>
+    <string name="about_app_fragment">About App Fragment</string>
+    <string name="dashboard_fragment">Dashboard Fragment</string>
+    <string name="list_item">List Item</string>
 
 
 </resources>
