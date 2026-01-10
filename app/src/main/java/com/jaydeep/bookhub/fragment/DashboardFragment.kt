@@ -6,11 +6,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.jaydeep.bookhub.R
 import com.jaydeep.bookhub.adapter.DashboardRecyclerAdapter
 import com.jaydeep.bookhub.model.Book
+import com.jaydeep.bookhub.util.ConnectionManager
 
 
 class DashboardFragment : Fragment() {
@@ -18,6 +21,7 @@ class DashboardFragment : Fragment() {
     lateinit var layoutManager: RecyclerView.LayoutManager
 
     lateinit var recyclerAdapter: DashboardRecyclerAdapter
+    lateinit var btnCheckInternet: Button
 
     val bookInfoList = arrayListOf<Book>(
 
@@ -47,6 +51,28 @@ class DashboardFragment : Fragment() {
         recyclerAdapter= DashboardRecyclerAdapter(activity as Context, bookInfoList)
         recyclerDashboard.adapter = recyclerAdapter
         recyclerDashboard.layoutManager=layoutManager
+
+        btnCheckInternet=view.findViewById(R.id.btnCheckInternet)
+        btnCheckInternet.setOnClickListener {
+            val dialog = AlertDialog.Builder(activity as Context)
+            if(ConnectionManager().checkConnectivity(activity as Context)){
+
+                dialog.setTitle("Success")
+                dialog.setMessage("Internet connection found")
+
+            }else{
+                dialog.setTitle("Failure")
+                dialog.setMessage("Internet connection not found")
+            }
+            dialog.setPositiveButton("Ok"){text, listener->
+                //do nothing
+            }
+            dialog.setNegativeButton("Cancel"){text,listener->
+                //do nothing
+            }
+            dialog.create()
+            dialog.show()
+        }
 
         return view
     }
